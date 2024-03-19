@@ -4,8 +4,6 @@ import threading
 import time
 import mysql.connector
 
-#33 listing per second
-
 # Constants for sleep times
 SCRAPING_DELAY = 2
 
