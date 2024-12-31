@@ -2,7 +2,7 @@ import random
 import firebase_admin
 from firebase_admin import credentials, firestore
 
-cred = credentials.Certificate("certifcate.json")
+cred = credentials.Certificate("path")
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
@@ -57,13 +57,15 @@ def generate_dummy_data(item_names, attributes, num_items):
             "name": random.choice(item_names),
             "rarity": random.choice(attributes),
             "price": round(random.uniform(0.5, 2000.0), 2),  
-            "other_fields": None 
+            "dummy_price": round(random.uniform(0.1, 1000.0), 2),  
+            "other_fields": None  
         }
         dummy_data.append(item)
 
     return dummy_data
 
 def store_to_firebase(collection_name, data):
+    """Store data in Firebase Firestore."""
     for item in data:
         db.collection(collection_name).add(item)
 
